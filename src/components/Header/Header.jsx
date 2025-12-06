@@ -1,17 +1,18 @@
-import Copyright from '../Copyright/copyright.jsx'
-import './Header.css'
-function Header({ setx1 }) {
+import React from "react";
+import "./Header.css";
+
+function Header() {
     return (
-        <>
-            <header className="header">
-                <h1>Titulo Header</h1>
-                <button onClick={() => {
-                    setx1("Otro nuevo valor")
-                }}>Click del header</button>
-                <Copyright companyName={"Derechos Reservados"}></Copyright>
+        <div className="site__wrapper">
+            <header className="banner site__section ">
+                <img
+                    src="src/assets/images/logo-mexico.jpeg"
+                    alt="Magical Mexico Logo"
+                    className="banner__logo"
+                />
             </header>
-        </>
-    )
+        </div>
+    );
 }
 
-export default Header
+export default Header;

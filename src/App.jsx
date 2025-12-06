@@ -1,24 +1,43 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 import Header from "./components/Header/Header";
-import "./app.css"
-import Background from "./components/Background/background";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import { AppContext } from "./components/Context/AppContext";
-import api from "./dataProvider/Api"
+import { useEffect } from "react";
+import api from "./components/dataProvider/Api";
+
 function App() {
   const [cards, setCards] = useState([]);
+  useEffect(() => {
+    async function loadCards() {
+      try {
+        const data = await api.getallcards();
+        setCards(data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadCards();
+  }, []);
 
   useEffect(() => {
-    async () => {
-      await api.getAllCards().then((data) => {
-        setCards(data);
-      }
-      );
-    };
-  },
-  )
+    console.log("CARDS ACTUALIZADO:", cards);
+  }, [cards]);
 
+  return (
+
+    <>
+      <div>
+        <Header />
+        <Main cards={cards} />
+        <Footer />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
