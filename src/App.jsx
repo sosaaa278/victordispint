@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import api from "./components/dataprovider/api";
+import api from "./components/dataProvider/Api";
 
 function App() {
   const [cards, setCards] = useState([]);
