@@ -6,8 +6,8 @@ function Header() {
         <div className="site__wrapper">
             <header className="banner site__section ">
                 <img
-                    src="src/assets/images/logo-mexico.jpeg"
-                    alt="Magical Mexico Logo"
+                    src="src/assets/images/images.jpg"
+                    alt=""
                     className="banner__logo"
                 />
             </header>

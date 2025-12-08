@@ -1,12 +1,35 @@
 import React from "react";
-import './Traveler.css'
+import "./Traveler.css";
 
-function Traveler() {
+function Traveler({ onCreateCard }) {
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [name, setName] = React.useState("");
+    const [link, setLink] = React.useState("");
+    const [description, setDescription] = React.useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const newCard = {
+            name,
+            link,
+            description,
+        };
+
+        onCreateCard(newCard);
+
+        setIsModalOpen(false);
+        setName("");
+        setLink("");
+        setDescription("");
+    }
+
     return (
         <section className="traveler-profile site__section">
+
             <img
                 className="traveler-profile__image"
-                src="src/assets/images/632510e53b3ae17f36993d7993c9fe8f.jpg"
+                src={"src/assets/images/batman.jpg"}
                 alt="Avatar"
             />
 
@@ -19,14 +42,60 @@ function Traveler() {
                     type="button"
                 />
 
-                <p className="traveler-profile__bio">PhD in Information Technology</p>
+                <p className="traveler-profile__bio">ototo</p>
             </div>
-
             <button
                 aria-label="Add new place"
                 className="traveler-profile__add-place-btn"
                 type="button"
+                onClick={() => setIsModalOpen(true)}
             />
+
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <button
+                            className="modal-close"
+                            onClick={() => setIsModalOpen(false)}
+                        >
+                            ✕
+                        </button>
+
+                        <h2>Add a new card</h2>
+
+                        <form className="modal-form" onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                placeholder="Title"
+                                name="name"
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+
+                            <input
+                                type="text"
+                                placeholder="description"
+                                name="description"
+                                required
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+
+                            <input
+                                type="url"
+                                placeholder="Image URL"
+                                name="link"
+                                required
+                                value={link}
+                                onChange={(e) => setLink(e.target.value)}
+                            />
+
+                            <button type="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

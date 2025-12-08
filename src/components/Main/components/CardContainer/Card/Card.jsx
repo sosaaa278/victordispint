@@ -1,8 +1,7 @@
 import React from "react";
 import "./Card.css"
 
-function Card({ card }) {
-
+function Card({ card, onUpdateCard, onDeleteCard }) {
     return (
         <li className="place-card">
             <img className="place-card__image" src={card.link} alt={card.title} />
@@ -11,6 +10,9 @@ function Card({ card }) {
                 aria-label="Remove place"
                 className="place-card__delete-button"
                 type="button"
+                onClick={() => {
+                    onDeleteCard(card)
+                }}
             />
 
             <div className="place-card__description">
@@ -18,8 +20,11 @@ function Card({ card }) {
 
                 <button
                     aria-label="Like place"
-                    className="place-card__like-button"
+                    className={`place-card__like-button ${card.like ? "place-card__like-button_is-active" : ""}`}
                     type="button"
+                    onClick={() => {
+                        onUpdateCard(card)
+                    }}
                 />
             </div>
         </li>

@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
     return (
         <footer className="footer site__section">
-            <p className="footer__text">© Magical Mexico</p>
+            <p className="footer__text"></p>
         </footer>
     );
 }

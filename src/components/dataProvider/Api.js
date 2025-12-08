@@ -23,7 +23,25 @@ class Api {
             headers: this._headers,
         }).then(res => this._handserveresponse(res));
     }
+
+    createCard(data) {
+        return fetch(`${this._baseUrl}/createCard`, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify(data),
+        }).then(this._handserveresponse);
+    }
+    updateLike(id) {
+        return fetch(`${this._baseUrl}/updateLike/${id}`, {
+            method: "PATCH",
+            headers: this._headers,
+        }).then(this._handserveresponse);
+    }
+
+
 }
+
+
 
 const api = new Api(
     "https://dispinteligentes9b-wpi2.onrender.com",
